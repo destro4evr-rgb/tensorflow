@@ -523,8 +523,7 @@ class TensorListSetItem : public OpKernel {
               "TensorListSetItem: requested implicit resize to ", new_size,
               " exceeds maximum allowed elements (",
               kMaxTensorListElements, ").")));
-      // size_t cast avoids signed overflow when index == INT32_MAX.
-      output_list->tensors().resize(static_cast<size_t>(index) + 1,
+      output_list->tensors().resize(static_cast<size_t>(new_size),
                                     Tensor(DT_INVALID));
     }
     output_list->tensors()[index] = value;
